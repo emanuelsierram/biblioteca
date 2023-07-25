@@ -22,8 +22,7 @@ public class ServicioCrearPrestamo {
     }
 
     @Transactional
-    public Map<String, Object> crear(DtoPrestamo dtoPrestamo) {
-        Prestamo prestamo = fabricaPrestamo(dtoPrestamo);
+    public Map<String, Object> crear(Prestamo prestamo) {
         if(prestamo.getTipoUsuario()==USUARIO_INVITADO){
             validarSiTieneLibrosPrestados(prestamo);
         }
@@ -37,17 +36,5 @@ public class ServicioCrearPrestamo {
    }
 
 
-
-
-
-
-    private Prestamo fabricaPrestamo(DtoPrestamo dtoPrestamo){
-        return new Prestamo(
-                dtoPrestamo.getId(),
-                dtoPrestamo.getIsbn(),
-                dtoPrestamo.getIdentificacionUsuario(),
-                dtoPrestamo.getTipoUsuario()
-        );
-    }
 
 }

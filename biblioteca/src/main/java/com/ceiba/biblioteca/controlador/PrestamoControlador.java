@@ -1,11 +1,14 @@
 package com.ceiba.biblioteca.controlador;
 
 
+
+import com.ceiba.biblioteca.controlador.comando.ManejadorCrearPrestamo;
+import com.ceiba.biblioteca.controlador.consulta.ManejadorObtenerPrestamo;
 import com.ceiba.biblioteca.modelo.dto.DtoPrestamo;
 import com.ceiba.biblioteca.modelo.dto.MensajeRespuesta;
-import com.ceiba.biblioteca.servicio.ServicioCrearPrestamo;
-import com.ceiba.biblioteca.servicio.ServicioObtenerPrestamo;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +19,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("prestamo")
 public class PrestamoControlador {
 
-    ServicioCrearPrestamo servicioCrearPrestamo;
-    ServicioObtenerPrestamo servicioObtenerPrestamo;
+    ManejadorCrearPrestamo manejadorCrearPrestamo;
+    ManejadorObtenerPrestamo manejadorObtenerPrestamo;
 
-    public PrestamoControlador(ServicioCrearPrestamo servicioCrearPrestamo, ServicioObtenerPrestamo servicioObtenerPrestamo){
-        this.servicioCrearPrestamo=servicioCrearPrestamo;
-        this.servicioObtenerPrestamo=servicioObtenerPrestamo;
+    @Autowired
+    public PrestamoControlador(ManejadorCrearPrestamo manejadorCrearPrestamo, ManejadorObtenerPrestamo manejadorObtenerPrestamo){
+        this.manejadorCrearPrestamo=manejadorCrearPrestamo;
+        this.manejadorObtenerPrestamo=manejadorObtenerPrestamo;
     }
+
 
 
     @PostMapping
@@ -31,7 +36,7 @@ public class PrestamoControlador {
         String json= null;
         ResponseEntity mensaje;
         try {
-            json = objectMapper.writeValueAsString(servicioCrearPrestamo.crear(dtoPrestamo));
+            json = objectMapper.writeValueAsString(manejadorCrearPrestamo.ejecutar(dtoPrestamo));
             mensaje=ResponseEntity.ok(json);
         } catch (Exception e) {
             MensajeRespuesta mensajeRespuesta=new MensajeRespuesta(e.getMessage().toString());
@@ -44,7 +49,7 @@ public class PrestamoControlador {
 
     @GetMapping("/{id}")
     public DtoPrestamo obtener(@PathVariable Integer id){
-        return servicioObtenerPrestamo.obtener(id);
+        return this.manejadorObtenerPrestamo.ejecutar(id);
     }
 
 

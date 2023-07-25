@@ -1,7 +1,5 @@
 package com.ceiba.biblioteca.modelo.entidad;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -41,13 +39,13 @@ public class Prestamo {
     }
 
 
-    public String CalculoFechaMaximaDePrestamo() {
-        String fechaMaximaCalculada;
+    private String CalculoFechaMaximaDePrestamo() {
+        String fechaMaximaCalculada="";
         if (tipoUsuario == USUARIO_AFILIADO)
             fechaMaximaCalculada=sumarDias(10);
         else if (tipoUsuario == USUARIO_EMPLEADO)
             fechaMaximaCalculada=sumarDias(8);
-        else
+        else if (tipoUsuario == USUARIO_INVITADO)
             fechaMaximaCalculada=sumarDias(7);
 
         return fechaMaximaCalculada;
@@ -66,7 +64,6 @@ public class Prestamo {
                 fechaActual = fechaActual.plusDays(1);
 
         }
-
 
         DateTimeFormatter formato=DateTimeFormatter.ofPattern(FORMATO_FECHA_MAXIMA_DEVOLUCION);
         String fechaFormateada=fechaActual.format(formato);
