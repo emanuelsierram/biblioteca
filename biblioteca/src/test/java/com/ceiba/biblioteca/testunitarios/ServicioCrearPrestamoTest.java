@@ -12,7 +12,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 
-public class SerivicoCrearPrestamoTest {
+public class ServicioCrearPrestamoTest {
 
     RepositorioPrestamo repositorioPrestamo;
     ServicioCrearPrestamo servicioCrearPrestamo;
