@@ -1,10 +1,10 @@
-package com.ceiba.biblioteca.calificador.unittest;
+package com.ceiba.biblioteca.testunitarios;
 
-import com.ceiba.biblioteca.calificador.unittest.testdatabuilder.PrestamoTestDataBuilder;
 import com.ceiba.biblioteca.modelo.dto.DtoPrestamo;
 import com.ceiba.biblioteca.modelo.entidad.Prestamo;
 import com.ceiba.biblioteca.modelo.repositorio.RepositorioPrestamo;
 import com.ceiba.biblioteca.servicio.ServicioCrearPrestamo;
+import com.ceiba.biblioteca.testunitarios.testdatabuilder.PrestamoTestDataBuilder;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

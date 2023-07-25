@@ -1,6 +1,5 @@
-package com.ceiba.biblioteca.calificador.unittest.testdatabuilder;
+package com.ceiba.biblioteca.testunitarios.testdatabuilder;
 
-import com.ceiba.biblioteca.modelo.dto.DtoPrestamo;
 import com.ceiba.biblioteca.modelo.entidad.Prestamo;
 
 public class PrestamoTestDataBuilder {
